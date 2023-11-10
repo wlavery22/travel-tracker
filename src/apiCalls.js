@@ -10,5 +10,12 @@ const fetchAPIcall = (data) => {
       return data;
     })
     .catch((error) => {
+      console.log(error);
     });
+};
+
+
+
+module.exports = {
+  fetchAPIcall
 };

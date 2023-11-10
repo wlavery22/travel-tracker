@@ -7,7 +7,24 @@
   <title>Webpack Starter Kit</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
+  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
+  <div class="login" id="login">
+    <form>
+      <label for="username">username:</label>
+      <input type="text" name="username" id="username" required />
+      <br/>
+      <label for="password">password:</label>
+      <input type="text" name="password" id="password" required />
+      <br/>
+      <br>
+      <button id="loginSubmitButton">Login</button>
+    </form> 
+    <div id="loginError">
+    </div>
+  </div>
+  <div id="dashboard" class="dashboard hidden">
+    dashboard
+  </div>
   
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
