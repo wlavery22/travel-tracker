@@ -32,8 +32,20 @@ const login = (event) => {
   } 
 }
 
+const bypassLoginScreen = () => {
+  const login = document.getElementById("login");
+  login.classList.add("hidden")
+  const dashboard = document.getElementById("dashboard");
+  dashboard.classList.remove("hidden")
+  setupDashboard("50")
+}
+
 const setupDashboard = (userId) => {
   console.log(userId)
 }
 
 loginButton.addEventListener("click", login);
+
+window.addEventListener("load", function () {
+  bypassLoginScreen()
+});
