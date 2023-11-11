@@ -2,6 +2,7 @@
 
 const tripsElement = document.getElementById("trips");
 const errorMessage = document.getElementById("errorMessage");
+const totalSpentElement = document.getElementById("totalSpent");
 
 const setErrorMessage = (message) => {
   errorMessage.innerText = message
@@ -32,4 +33,8 @@ const displayUserTrips = (trips) => {
   })
 }
 
-export { displayUserTrips, setErrorMessage };
+const displayTotalSpentThisYr = (amount) => {
+  totalSpentElement.innerText = `You've Spent $${amount} in ${new Date().getFullYear()}`
+}
+
+export { displayUserTrips, setErrorMessage, displayTotalSpentThisYr };

@@ -8,8 +8,8 @@ console.log('This is the JavaScript entry file - your code begins here.');
 
 import { fetchAPIcall } from "./apiCalls";
 
-import { displayUserTrips, setErrorMessage } from "./domUpdates"; 
-import { filterTripsByUser } from "./utils";
+import { displayUserTrips, setErrorMessage, displayTotalSpentThisYr } from "./domUpdates"; 
+import { filterTripsByUser, getTotalSpentThisYr } from "./utils";
 
 const loginButton = document.getElementById("loginSubmitButton");
 
@@ -47,14 +47,19 @@ const bypassLoginScreen = () => {
 
 const setupDashboard = (userId) => {
   // console.log(userId);
-  fetchAPIcall("trips")
+    Promise.all([
+      fetchAPIcall("trips"),
+      fetchAPIcall("destinations")
+    ])
     .then((response) => {
       // getAllTripsByUser(50),
       // userTrips = response
       // console.log(userTrips)
       console.log("RESPONSE!:", response)
-      const usersTrips = filterTripsByUser(response.trips, parseInt(userId))
+      const usersTrips = filterTripsByUser(response[0].trips, parseInt(userId))
       displayUserTrips(usersTrips)
+      const totalSpentThisYr = getTotalSpentThisYr(usersTrips, response[1].destinations)
+      displayTotalSpentThisYr(totalSpentThisYr)
       // updateDOM()
       // getUserTotalCost() 
     })
