@@ -2,7 +2,15 @@
 
 const tripsElement = document.getElementById("trips");
 const errorMessage = document.getElementById("errorMessage");
-const totalSpentElement = document.getElementById("totalSpent");
+const totalSpentElement = document.getElementById("totalSpent"); 
+const tripDestination = document.getElementById("tripDestination");
+
+const displayDestinationDropDown = (destinations) => {
+  destinations.forEach((spot) => {
+    tripDestination.innerHTML += `<option value="${spot.id}">${spot.destination}</option>`
+  })
+
+}
 
 const setErrorMessage = (message) => {
   errorMessage.innerText = message
@@ -37,4 +45,4 @@ const displayTotalSpentThisYr = (amount) => {
   totalSpentElement.innerText = `You've Spent $${amount} in ${new Date().getFullYear()}`
 }
 
-export { displayUserTrips, setErrorMessage, displayTotalSpentThisYr };
+export { displayUserTrips, setErrorMessage, displayTotalSpentThisYr, displayDestinationDropDown };

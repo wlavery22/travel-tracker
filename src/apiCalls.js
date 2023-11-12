@@ -38,7 +38,7 @@ const submitTripRequest = (booking, userID) => {
   .then(response => response.json())
   .catch(err => console.error(err));
 }
-
+// need to build into this function the ability to update DOM and call the functions that will estimate cost
 
 
 module.exports = {

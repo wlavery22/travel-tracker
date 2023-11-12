@@ -8,10 +8,11 @@ console.log('This is the JavaScript entry file - your code begins here.');
 
 import { fetchAPIcall } from "./apiCalls";
 
-import { displayUserTrips, setErrorMessage, displayTotalSpentThisYr } from "./domUpdates"; 
+import { displayUserTrips, setErrorMessage, displayTotalSpentThisYr, displayDestinationDropDown } from "./domUpdates"; 
 import { filterTripsByUser, getTotalSpentThisYr } from "./utils";
 
 const loginButton = document.getElementById("loginSubmitButton");
+const tripDestination = document.getElementById("tripDestination");
 
 let userTrips 
 
@@ -60,6 +61,7 @@ const setupDashboard = (userId) => {
       displayUserTrips(usersTrips)
       const totalSpentThisYr = getTotalSpentThisYr(usersTrips, response[1].destinations)
       displayTotalSpentThisYr(totalSpentThisYr)
+      displayDestinationDropDown(response[1].destinations)
       // updateDOM()
       // getUserTotalCost() 
     })
@@ -76,16 +78,12 @@ const setupDashboard = (userId) => {
     //     updateDom(allData);
     //   });
     // };
-  // Total spent on trips this year, calculated from trips data, including a travel agent’s 10% fee
-  // call function for fetch
-  // update DOM to display userTrips and userTotalCost
-
-// console.log(userTrips)
 
 // function getTripsByUserId(trips, userId) {
 //   return trips.filter(trip => trip.userID === userId);
 // }
 
+// user gets destination on form, needed a dropdown menu, for destination element on HTML, we would need to map over the destination array, target destination array, .map to target destination key, pulling the values of the destination key, the name of the destination in string form, HTML select, options, to create a dropdown menu, give options a value, use an ID for that, the destination ID, user clicks name of destination in dropdown, we use ID to aid function in estimating the cost, 
 
 loginButton.addEventListener("click", login);
 

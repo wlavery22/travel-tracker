@@ -50,16 +50,21 @@
         <br>
         <br/>
         <form>
+          
           <label for="destination"> Destination: </label>
-          <input for="destination" type="destination" name="destination" id="tripDestination" required />
+          <select name="destination" id="tripDestination" required >
+            
+          </select>
+          <!-- <label for="destination"> Destination: </label>
+          <input type="destination" name="destination" id="tripDestination" required /> -->
           <br>
           <br/>
           <label for="tripDate"> Date: </label>
-          <input for="tripDate" type="date" name="date" id="tripDate" required />
+          <input type="date" name="date" id="tripDate" required />
           <br/>
           <br>
           <label for="duration"> Duration: </label>
-          <input for="duration" type="duration" name="duration" id="tripDuration" required />
+          <input type="number" min="1" name="duration" id="tripDuration" required />
           <br/>
           <br>
           <label for="partySize"> Party Size: </label>
@@ -85,4 +90,5 @@
 </html>
 <!-- user can choose date, duration(# days), # travelers, destination
 DOM display: after choosing, user should see estimated cost (with 10% travel agent fee)
-DOM display: after submitting (Posting), user should see “pending” -->
+DOM display: after submitting (Posting), user should see “pending” 
+in order to have a drop down menu for destinations you will need to append an html element and use forEach-->

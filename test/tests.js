@@ -1,14 +1,12 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-// describe('See if the tests are running', function() {
-//   it('should return true', function() {
-//     expect(true).to.equal(true);
-//   });
-// });
+// const assert = require('chai').assert;
+// const getAllTripsByUser = require('./getAllTripsByUser');
 
-const assert = require('chai').assert;
-const getAllTripsByUser = require('./getAllTripsByUser');
+import {
+
+} from "../src/utils.js";
 
 describe('getAllTripsByUser', function() {
   it('returns all trips for a given userID', function() {
@@ -21,3 +19,9 @@ describe('getAllTripsByUser', function() {
   });
 });
 
+// example test that came with the file:
+// describe('See if the tests are running', function() {
+//   it('should return true', function() {
+//     expect(true).to.equal(true);
+//   });
+// });
