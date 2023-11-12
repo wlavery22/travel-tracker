@@ -27,11 +27,16 @@ const getTotalSpentThisYr = (trips, destinations) => {
   return spentThisYear * 1.1
 }
 
-
+const getEstimatedCost = (booking, userID) => {  
+}
+// need to grab the destination chosen from the DOM, the number of travelers, the number of days
+// perhaps the best 
 
 export { filterTripsByUser, getTotalSpentThisYr }
 
-
+// user can choose date, duration(# days), # travelers, destination
+// DOM display: after choosing, user should see estimated cost (with 10% travel agent fee)
+// DOM display: after submitting (Posting), user should see “pending” 
 
 // const getAllTripsByUser = (userID) => {
 //   fetchAPIcall("trips").then((response) => {
