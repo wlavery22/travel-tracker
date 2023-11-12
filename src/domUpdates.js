@@ -4,6 +4,7 @@ const tripsElement = document.getElementById("trips");
 const errorMessage = document.getElementById("errorMessage");
 const totalSpentElement = document.getElementById("totalSpent"); 
 const tripDestination = document.getElementById("tripDestination");
+const estimatedCost = document.getElementById("estimatedCost");
 
 const displayDestinationDropDown = (destinations) => {
   destinations.forEach((spot) => {
@@ -45,4 +46,8 @@ const displayTotalSpentThisYr = (amount) => {
   totalSpentElement.innerText = `You've Spent $${amount} in ${new Date().getFullYear()}`
 }
 
-export { displayUserTrips, setErrorMessage, displayTotalSpentThisYr, displayDestinationDropDown };
+const updateEstimatedCost = (cost) => {
+  estimatedCost.innerText = `Estimated Trip Cost: $${cost}`
+}
+
+export { displayUserTrips, setErrorMessage, displayTotalSpentThisYr, displayDestinationDropDown, updateEstimatedCost };

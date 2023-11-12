@@ -8,13 +8,15 @@ console.log('This is the JavaScript entry file - your code begins here.');
 
 import { fetchAPIcall } from "./apiCalls";
 
-import { displayUserTrips, setErrorMessage, displayTotalSpentThisYr, displayDestinationDropDown } from "./domUpdates"; 
-import { filterTripsByUser, getTotalSpentThisYr } from "./utils";
+import { displayUserTrips, setErrorMessage, displayTotalSpentThisYr, displayDestinationDropDown, updateEstimatedCost } from "./domUpdates"; 
+import { filterTripsByUser, getTotalSpentThisYr, getEstimatedCost } from "./utils";
 
 const loginButton = document.getElementById("loginSubmitButton");
 const tripDestination = document.getElementById("tripDestination");
+const estimateCostButton = document.getElementById("estimateCostButton");
 
 let userTrips 
+let destinations
 
 // const login = (event) => {
 //   event.preventDefault();
@@ -56,7 +58,8 @@ const setupDashboard = (userId) => {
       // getAllTripsByUser(50),
       // userTrips = response
       // console.log(userTrips)
-      console.log("RESPONSE!:", response)
+      // console.log("RESPONSE!:", response)
+      destinations = response[1].destinations
       const usersTrips = filterTripsByUser(response[0].trips, parseInt(userId))
       displayUserTrips(usersTrips)
       const totalSpentThisYr = getTotalSpentThisYr(usersTrips, response[1].destinations)
@@ -85,7 +88,25 @@ const setupDashboard = (userId) => {
 
 // user gets destination on form, needed a dropdown menu, for destination element on HTML, we would need to map over the destination array, target destination array, .map to target destination key, pulling the values of the destination key, the name of the destination in string form, HTML select, options, to create a dropdown menu, give options a value, use an ID for that, the destination ID, user clicks name of destination in dropdown, we use ID to aid function in estimating the cost, 
 
+const estimateCost = (event) => {
+  event.preventDefault();
+  const tripDestination = document.getElementById("tripDestination");
+  const tripDate = document.getElementById("tripDate");
+  const tripDuration = document.getElementById("tripDuration");
+  const partySize = document.getElementById("partySize");
+  // console.log(tripDestination.value, tripDate.value, tripDuration.value, partySize.value)
+  const bookingObject = {
+    id: parseInt(tripDestination.value),
+    duration: tripDuration.value,
+    travelers: partySize.value
+  }
+  const estimatedCost = getEstimatedCost(bookingObject, destinations)
+  console.log(estimatedCost)
+  updateEstimatedCost(estimatedCost)
+}
+
 loginButton.addEventListener("click", login);
+estimateCostButton.addEventListener("click", estimateCost);
 
 window.addEventListener("load", function () {
   console.log("TEST")

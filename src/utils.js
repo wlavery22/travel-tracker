@@ -27,21 +27,23 @@ const getTotalSpentThisYr = (trips, destinations) => {
   return spentThisYear * 1.1
 }
 
-// const findDestinationByName = (destinations, destinationName) => {
-//   const destinationByName = destinations.find((spot) => {
-//     return spot.destination === destinationName
-//   })
-//   return destinationByName
-// }
+const findDestinationById = (destinations, destinationId) => {
+  const matchingDestination = destinations.find((spot) => {
+    return spot.id === destinationId
+  })
+  return matchingDestination
+}
 
 // const destinationObject = findDestinationByName(destinations, destinationName)
 
-// const getEstimatedCost = (booking, destinationObject) => {  
-//   const estimatedFlightCost = booking.travelers * destinationObject.estimatedFlightCostPerPerson
-//   const estimatedLodgingCost = booking.duration * destinationObject.estimatedLodgingCostPerDay
-//   const totalEstimatedCost = estimatedFlightCost + estimatedLodgingCost
-//   return totalEstimatedCost * 1.1
-// }
+const getEstimatedCost = (bookingObject, destinations) => {  
+  const destinationObject = findDestinationById(destinations, bookingObject.id)
+  console.log(bookingObject, destinationObject)
+  const estimatedFlightCost = bookingObject.travelers * destinationObject.estimatedFlightCostPerPerson
+  const estimatedLodgingCost = bookingObject.duration * destinationObject.estimatedLodgingCostPerDay
+  const totalEstimatedCost = estimatedFlightCost + estimatedLodgingCost
+  return totalEstimatedCost * 1.1
+}
 
 // "destinations": [
 //   {
@@ -70,7 +72,7 @@ const getTotalSpentThisYr = (trips, destinations) => {
 //    need to iterate through the destinations array to find costs, flight and per day
 //    need to mutiply those costs by # of travelers and days
 //    get the total, then add 10%, then display on DOM 
-export { filterTripsByUser, getTotalSpentThisYr }
+export { filterTripsByUser, getTotalSpentThisYr, getEstimatedCost }
 
 // user can choose date, duration(# days), # travelers, destination
 // DOM display: after choosing, user should see estimated cost (with 10% travel agent fee)
