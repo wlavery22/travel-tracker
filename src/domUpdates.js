@@ -2,7 +2,15 @@
 
 const tripsElement = document.getElementById("trips");
 const errorMessage = document.getElementById("errorMessage");
-const totalSpentElement = document.getElementById("totalSpent");
+const totalSpentElement = document.getElementById("totalSpent"); 
+const tripDestination = document.getElementById("tripDestination");
+const estimatedCost = document.getElementById("estimatedCost");
+
+const displayDestinationDropDown = (destinations) => {
+  destinations.forEach((spot) => {
+    tripDestination.innerHTML += `<option value="${spot.id}">${spot.destination}</option>`
+  })
+}
 
 const setErrorMessage = (message) => {
   errorMessage.innerText = message
@@ -10,6 +18,7 @@ const setErrorMessage = (message) => {
 
 const displayUserTrips = (trips) => {
   console.log(trips)
+  tripsElement.innerHTML = ""
   trips.forEach((trip, index) => {
     tripsElement.innerHTML += `
     <article>
@@ -37,4 +46,8 @@ const displayTotalSpentThisYr = (amount) => {
   totalSpentElement.innerText = `You've Spent $${amount} in ${new Date().getFullYear()}`
 }
 
-export { displayUserTrips, setErrorMessage, displayTotalSpentThisYr };
+const updateEstimatedCost = (cost) => {
+  estimatedCost.innerText = `Estimated Trip Cost: $${cost}`
+}
+
+export { displayUserTrips, setErrorMessage, displayTotalSpentThisYr, displayDestinationDropDown, updateEstimatedCost };

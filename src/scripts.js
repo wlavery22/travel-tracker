@@ -6,14 +6,19 @@ import './css/styles.css';
 import './images/turing-logo.png'
 console.log('This is the JavaScript entry file - your code begins here.');
 
-import { fetchAPIcall } from "./apiCalls";
+import { fetchAPIcall, submitTripRequest } from "./apiCalls";
 
-import { displayUserTrips, setErrorMessage, displayTotalSpentThisYr } from "./domUpdates"; 
-import { filterTripsByUser, getTotalSpentThisYr } from "./utils";
+import { displayUserTrips, setErrorMessage, displayTotalSpentThisYr, displayDestinationDropDown, updateEstimatedCost } from "./domUpdates"; 
+import { filterTripsByUser, getTotalSpentThisYr, getEstimatedCost, findDestinationById } from "./utils";
 
 const loginButton = document.getElementById("loginSubmitButton");
+const tripDestination = document.getElementById("tripDestination");
+const estimateCostButton = document.getElementById("estimateCostButton");
+const bookingFormSubmitButton = document.getElementById("bookingFormSubmitButton");
 
 let userTrips 
+let destinations
+let globalUserId
 
 // const login = (event) => {
 //   event.preventDefault();
@@ -47,6 +52,7 @@ const bypassLoginScreen = () => {
 
 const setupDashboard = (userId) => {
   // console.log(userId);
+    globalUserId = parseInt(userId)
     Promise.all([
       fetchAPIcall("trips"),
       fetchAPIcall("destinations")
@@ -55,11 +61,14 @@ const setupDashboard = (userId) => {
       // getAllTripsByUser(50),
       // userTrips = response
       // console.log(userTrips)
-      console.log("RESPONSE!:", response)
+      // console.log("RESPONSE!:", response)
+      destinations = response[1].destinations
       const usersTrips = filterTripsByUser(response[0].trips, parseInt(userId))
+      userTrips = usersTrips
       displayUserTrips(usersTrips)
       const totalSpentThisYr = getTotalSpentThisYr(usersTrips, response[1].destinations)
       displayTotalSpentThisYr(totalSpentThisYr)
+      displayDestinationDropDown(response[1].destinations)
       // updateDOM()
       // getUserTotalCost() 
     })
@@ -76,18 +85,59 @@ const setupDashboard = (userId) => {
     //     updateDom(allData);
     //   });
     // };
-  // Total spent on trips this year, calculated from trips data, including a travel agent’s 10% fee
-  // call function for fetch
-  // update DOM to display userTrips and userTotalCost
-
-// console.log(userTrips)
 
 // function getTripsByUserId(trips, userId) {
 //   return trips.filter(trip => trip.userID === userId);
 // }
 
+// user gets destination on form, needed a dropdown menu, for destination element on HTML, we would need to map over the destination array, target destination array, .map to target destination key, pulling the values of the destination key, the name of the destination in string form, HTML select, options, to create a dropdown menu, give options a value, use an ID for that, the destination ID, user clicks name of destination in dropdown, we use ID to aid function in estimating the cost, 
+
+const estimateCost = (event) => {
+  event.preventDefault();
+  const tripDestination = document.getElementById("tripDestination");
+  const tripDate = document.getElementById("tripDate");
+  const tripDuration = document.getElementById("tripDuration");
+  const partySize = document.getElementById("partySize");
+  // console.log(tripDestination.value, tripDate.value, tripDuration.value, partySize.value)
+  const bookingObject = {
+    id: parseInt(tripDestination.value),
+    duration: tripDuration.value,
+    travelers: partySize.value
+  }
+  const estimatedCost = getEstimatedCost(bookingObject, destinations)
+  console.log(estimatedCost)
+  updateEstimatedCost(estimatedCost)
+}
+
+const submitBooking = (event) => {
+  event.preventDefault();
+  const tripDestination = document.getElementById("tripDestination");
+  const tripDate = document.getElementById("tripDate");
+  const tripDuration = document.getElementById("tripDuration");
+  const partySize = document.getElementById("partySize");
+  const reformattedDate = tripDate.value.split("-").join("/");
+  // console.log(userId)
+  const bookingObject = {
+    id: Date.now(),
+    userID: globalUserId,
+    destinationID: parseInt(tripDestination.value),
+    travelers: parseInt(partySize.value),
+    date: reformattedDate,
+    duration: parseInt(tripDuration.value),
+    status: "pending", 
+    suggestedActivities: []
+  }
+  submitTripRequest(bookingObject)
+    .then((response) => {
+      console.log(response, userTrips)
+      userTrips.push(response.newTrip)
+      displayUserTrips(userTrips)
+    })
+}
 
 loginButton.addEventListener("click", login);
+estimateCostButton.addEventListener("click", estimateCost);
+bookingFormSubmitButton.addEventListener("click", submitBooking);
 
 window.addEventListener("load", function () {
   console.log("TEST")

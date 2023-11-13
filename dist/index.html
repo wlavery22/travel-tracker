@@ -23,11 +23,66 @@
     </div>
   </div>
   <div id="dashboard" class="dashboard hidden">
+    <div class="header">
+      <header>
+        <h1 class="welcome-user-msg"></h1>
+      </header>
+      <nav>
+        <h1 class="date"></h1>
+      </nav>
+      <h1 class="main-title">The World is Your Oyster Travels</h1>
+      <img
+      />
+    </div>
     <h2 id="totalSpent"></h2>
     <div id="trips" class="trips">
       
     </div>
     <p id="errorMessage">
+      
+    </p>
+    <div class="input-field">
+      <section>
+        <h2>Book a Trip and Snatch a Pearl!</h2>
+        <h2 class="material-symbols-outlined">
+          opacity
+        </h2>
+        <br>
+        <br/>
+        <form>
+          
+          <label for="destination"> Destination: </label>
+          <select name="destination" id="tripDestination" required >
+            
+          </select>
+          <!-- <label for="destination"> Destination: </label>
+          <input type="destination" name="destination" id="tripDestination" required /> -->
+          <br>
+          <br/>
+          <label for="tripDate"> Date: </label>
+          <input type="date" name="date" id="tripDate" required />
+          <br/>
+          <br>
+          <label for="duration"> Duration: </label>
+          <input type="number" min="1" name="duration" id="tripDuration" required />
+          <br/>
+          <br>
+          <label for="partySize"> Party Size: </label>
+          <input type="number" min="1" name="number-of-travelers" id="partySize" required placeholder="Add number here..."/>
+          <br/>
+          <br>
+          <button type="button" id="estimateCostButton">Estimate Cost</button>
+          <br/>
+          <br>
+          <h2 id="estimatedCost"></h2>
+          <br/>
+          <br>
+          <button type="button" id="bookingFormSubmitButton" class="booking-form-submit-button">Submit</button>
+        </form> 
+        <p id="formError"></p>
+      </section>
+    </div>
+    <p id="requestPending">
       
     </p>
     dashboard
@@ -38,3 +93,7 @@
 
 </body>
 </html>
+<!-- user can choose date, duration(# days), # travelers, destination
+DOM display: after choosing, user should see estimated cost (with 10% travel agent fee)
+DOM display: after submitting (Posting), user should see “pending” 
+in order to have a drop down menu for destinations you will need to append an html element and use forEach-->
