@@ -9,7 +9,7 @@ console.log('This is the JavaScript entry file - your code begins here.');
 import { fetchAPIcall, submitTripRequest } from "./apiCalls";
 
 import { displayUserTrips, setErrorMessage, displayTotalSpentThisYr, displayDestinationDropDown, updateEstimatedCost } from "./domUpdates"; 
-import { filterTripsByUser, getTotalSpentThisYr, getEstimatedCost } from "./utils";
+import { filterTripsByUser, getTotalSpentThisYr, getEstimatedCost, findDestinationById } from "./utils";
 
 const loginButton = document.getElementById("loginSubmitButton");
 const tripDestination = document.getElementById("tripDestination");
@@ -134,8 +134,6 @@ const submitBooking = (event) => {
       displayUserTrips(userTrips)
     })
 }
-
-// {id: <number>, userID: <number>, destinationID: <number>, travelers: <number>, date: <string 'YYYY/MM/DD'>, duration: <number>, status: <string 'approved' or 'pending'>, suggestedActivities: <array of strings>}
 
 loginButton.addEventListener("click", login);
 estimateCostButton.addEventListener("click", estimateCost);

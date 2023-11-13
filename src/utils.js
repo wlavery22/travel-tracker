@@ -1,12 +1,9 @@
 
 
-
-
 const filterTripsByUser = (trips, userID) => {
   const tripsByUser = trips.filter((trip) => {
     return userID === trip.userID
   })
-  
   return tripsByUser
 }
 
@@ -37,13 +34,15 @@ const findDestinationById = (destinations, destinationId) => {
 // const destinationObject = findDestinationByName(destinations, destinationName)
 
 const getEstimatedCost = (bookingObject, destinations) => {  
-  const destinationObject = findDestinationById(destinations, bookingObject.id)
-  console.log(bookingObject, destinationObject)
-  const estimatedFlightCost = bookingObject.travelers * destinationObject.estimatedFlightCostPerPerson
-  const estimatedLodgingCost = bookingObject.duration * destinationObject.estimatedLodgingCostPerDay
+  const matchingDestination = findDestinationById(destinations, bookingObject.id)
+  console.log(bookingObject, matchingDestination)
+  const estimatedFlightCost = bookingObject.travelers * matchingDestination.estimatedFlightCostPerPerson
+  const estimatedLodgingCost = bookingObject.duration * matchingDestination.estimatedLodgingCostPerDay
   const totalEstimatedCost = estimatedFlightCost + estimatedLodgingCost
   return totalEstimatedCost * 1.1
 }
+
+export { filterTripsByUser, getTotalSpentThisYr, getEstimatedCost, findDestinationById }
 
 // "destinations": [
 //   {
@@ -72,7 +71,6 @@ const getEstimatedCost = (bookingObject, destinations) => {
 //    need to iterate through the destinations array to find costs, flight and per day
 //    need to mutiply those costs by # of travelers and days
 //    get the total, then add 10%, then display on DOM 
-export { filterTripsByUser, getTotalSpentThisYr, getEstimatedCost }
 
 // user can choose date, duration(# days), # travelers, destination
 // DOM display: after choosing, user should see estimated cost (with 10% travel agent fee)
