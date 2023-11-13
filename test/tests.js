@@ -17,6 +17,7 @@ import {
 } from "../src/utils.js";
 
 import { trips } from "./tripsTestData.js";
+import { destinations } from "./destinationsTestData.js";
 // const { trips } = require('./tripsTestData');
 
 describe('filterTripsByUser', function() {
@@ -35,21 +36,67 @@ describe('filterTripsByUser', function() {
 
   it('should return the correct total spent for the current year', function() {
     const currentYear = new Date().getFullYear();
-    const thisYearsTrips = tripsData.trips.filter(trip => new Date(trip.date).getFullYear() === currentYear);
-    
+    const thisYearsTrips = trips.filter(trip => new Date(trip.date).getFullYear() === currentYear);
     const spentThisYear = thisYearsTrips.reduce((acc, curr) => {
       const matchingDestination = destinationsData.find(spot => spot.id === curr.id);
       const spentOnLodging = curr.duration * matchingDestination.estimatedLodgingCostPerDay;
       const spentOnFlights = curr.travelers * matchingDestination.estimatedFlightCostPerPerson;
       return acc += spentOnLodging + spentOnFlights;
     }, 0);
-    
     const expectedTotal = spentThisYear * 1.1;
-    const result = getTotalSpentThisYr(tripsData.trips, destinationsData);
-
+    const result = getTotalSpentThisYr(trips, destinations);
     expect(result).to.equal(expectedTotal);
   });
+
+  it('should return 0 when no money was spent in the current year', function() {
+    const currentYear = new Date().getFullYear();
+    const noSpentTripsData = {...trips};
+    noSpentTripsData.trips = trips.map(trip => {
+      if (new Date(trip.date).getFullYear() === currentYear) {
+        return {...trip, date: '2000-01-01'};
+      }
+      return trip;
+    });
+    const result = getTotalSpentThisYr(noSpentTripsData.trips, destinations);
+    expect(result).to.equal(0);
+  });
+
+  it('should return the correct destination for a given id', function() {
+    const destinationId = 3;
+    const expectedDestination = destinations.find(spot => spot.id === destinationId);
+    const result = findDestinationById(destinations, destinationId);
+    expect(result).to.deep.equal(expectedDestination);
+  });
+
+  it('should return undefined when the destination id does not exist', function() {
+    const nonExistentDestinationId = 9999;
+    const result = findDestinationById(destinations, nonExistentDestinationId);
+    expect(result).to.be.undefined;
+  });
   
+  it('should return the correct estimated cost for a given booking object', function() {
+    const bookingObject = {
+      id: 3,
+      travelers: 2,
+      duration: 7,
+    };
+    const matchingDestination = findDestinationById(destinations, bookingObject.id);
+    const estimatedFlightCost = bookingObject.travelers * matchingDestination.estimatedFlightCostPerPerson;
+    const estimatedLodgingCost = bookingObject.duration * matchingDestination.estimatedLodgingCostPerDay;
+    const expectedTotal = (estimatedFlightCost + estimatedLodgingCost) * 1.1;
+    const result = getEstimatedCost(bookingObject, destinations);
+    expect(result).to.equal(expectedTotal);
+  });
+
+  it('should return NaN when the booking object id does not exist in destinations', function() {
+    const nonExistentBookingObject = {
+      id: 9999, // This ID does not exist in the destinations data
+      travelers: 2,
+      duration: 7,
+    };
+    const result = getEstimatedCost(nonExistentBookingObject, destinations);
+    expect(result).to.be.NaN;
+  });
 });
 
 // const filterTripsByUser = (trips, userID) => {

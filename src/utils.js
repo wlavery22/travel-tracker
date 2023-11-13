@@ -12,7 +12,7 @@ const getTotalSpentThisYr = (trips, destinations) => {
   const thisYearsTrips = trips.filter((trip) => {
     return new Date(trip.date).getFullYear() === currentYear
   }) 
-  console.log(destinations)
+  // console.log(destinations)
   const spentThisYear = thisYearsTrips.reduce((acc, curr) => {
     const matchingDestination = destinations.find((spot) => {
       return spot.id === curr.id 
