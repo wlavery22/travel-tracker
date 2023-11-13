@@ -1,14 +1,6 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-// const assert = require('chai').assert;
-// import { 
-// } from "../src/utils.js";
-
-// import { expect } from 'chai';
-// import filterTripsByUser from './filterTripsByUser';
-// import trips from './tripsTestData';
-
 import {
   filterTripsByUser, 
   getTotalSpentThisYr, 
@@ -18,9 +10,8 @@ import {
 
 import { trips } from "./tripsTestData.js";
 import { destinations } from "./destinationsTestData.js";
-// const { trips } = require('./tripsTestData');
 
-describe('filterTripsByUser', function() {
+describe('trip-related functions', function() {
   it('should return all trips for a given userID', function() {
     const userId = 50;
     const expectedTrips = trips.filter(trip => trip.userID === userId);
@@ -98,17 +89,3 @@ describe('filterTripsByUser', function() {
     expect(result).to.be.undefined;
   });
 });
-
-// const filterTripsByUser = (trips, userID) => {
-//   const tripsByUser = trips.filter((trip) => {
-//     return userID === trip.userID
-//   })
-//   return tripsByUser
-// }
-
-// example test that came with the file:
-// describe('See if the tests are running', function() {
-//   it('should return true', function() {
-//     expect(true).to.equal(true);
-//   });
-// });

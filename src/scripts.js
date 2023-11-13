@@ -87,12 +87,6 @@ const setupDashboard = (userId) => {
     //   });
     // };
 
-// function getTripsByUserId(trips, userId) {
-//   return trips.filter(trip => trip.userID === userId);
-// }
-
-// user gets destination on form, needed a dropdown menu, for destination element on HTML, we would need to map over the destination array, target destination array, .map to target destination key, pulling the values of the destination key, the name of the destination in string form, HTML select, options, to create a dropdown menu, give options a value, use an ID for that, the destination ID, user clicks name of destination in dropdown, we use ID to aid function in estimating the cost, 
-
 const estimateCost = (event) => {
   event.preventDefault();
   const tripDestination = document.getElementById("tripDestination");
