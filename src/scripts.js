@@ -59,15 +59,16 @@ const setupDashboard = (userId) => {
     ])
     .then((response) => {
       // getAllTripsByUser(50),
-      // userTrips = response
-      // console.log(userTrips)
-      // console.log("RESPONSE!:", response)
+      userTrips = response
+      console.log(userTrips)
+      console.log("RESPONSE!:", response)
       destinations = response[1].destinations
       const usersTrips = filterTripsByUser(response[0].trips, parseInt(userId))
       userTrips = usersTrips
       displayUserTrips(usersTrips)
       const totalSpentThisYr = getTotalSpentThisYr(usersTrips, response[1].destinations)
       displayTotalSpentThisYr(totalSpentThisYr)
+      console.log("RESPONSE!:", response)
       displayDestinationDropDown(response[1].destinations)
       // updateDOM()
       // getUserTotalCost() 

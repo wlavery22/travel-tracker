@@ -7,6 +7,7 @@ const tripDestination = document.getElementById("tripDestination");
 const estimatedCost = document.getElementById("estimatedCost");
 
 const displayDestinationDropDown = (destinations) => {
+  console.log("DESTINATIONS:", destinations)
   destinations.forEach((spot) => {
     tripDestination.innerHTML += `<option value="${spot.id}">${spot.destination}</option>`
   })

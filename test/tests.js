@@ -73,7 +73,7 @@ describe('filterTripsByUser', function() {
     const result = findDestinationById(destinations, nonExistentDestinationId);
     expect(result).to.be.undefined;
   });
-  
+
   it('should return the correct estimated cost for a given booking object', function() {
     const bookingObject = {
       id: 3,
@@ -88,14 +88,14 @@ describe('filterTripsByUser', function() {
     expect(result).to.equal(expectedTotal);
   });
 
-  it('should return NaN when the booking object id does not exist in destinations', function() {
+  it('should return undefined when the booking object id does not exist in destinations', function() {
     const nonExistentBookingObject = {
-      id: 9999, // This ID does not exist in the destinations data
+      id: 9999, 
       travelers: 2,
-      duration: 7,
+      duration: 7
     };
     const result = getEstimatedCost(nonExistentBookingObject, destinations);
-    expect(result).to.be.NaN;
+    expect(result).to.be.undefined;
   });
 });
 

@@ -2,6 +2,67 @@
   background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 } */
 
+/* color palette: 
+
+electric blue
+#3c53f8
+
+lavender
+#cdc0ff
+
+mint green
+#49bea1
+
+off black
+#1C1A27 */
+
+body,
+html {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  background-image: linear-gradient(
+    to top,
+    #3c53f8 0%,
+    #cdc0ff 99%,
+    #cdc0ff 100%
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 90%;
+  padding: 11px;
+}
+
+h1 {
+  color: #3c53f8;
+  margin: 0px;
+}
+
+.header {
+  background-color: #fff;
+  color: #333;
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  height: 90px;
+  align-items: center;
+  margin-top: -20px;
+}
+
+.main-title {
+  font-size: 2em;
+}
+
+/* .welcome-user-msg {
+  position: relative;
+  top: -150px;
+  float: right;
+  width: 500px;
+  padding: 10px;
+  height: 130px;
+  border-radius: 20px;
+} */
+
 .login {
   height: 100dvh;
   width: 100dvw;
