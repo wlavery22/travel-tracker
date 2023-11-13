@@ -18,22 +18,13 @@ const fetchAPIcall = (data) => {
 // DOM display: after choosing, user should see estimated cost (with 10% travel agent fee)
 // DOM display: after submitting (Posting), user should see “pending”
 
-const submitTripRequest = (booking, userID) => {
+const submitTripRequest = (bookingObject) => {
   return fetch("http://localhost:3001/api/v1/trips", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      id: Date.now(), 
-      userID: userID, 
-      destinationID: booking.destinationID, 
-      travelers: booking.travelers, 
-      date: booking.date, 
-      duration: booking.duration, 
-      status: 'pending', 
-      suggestedActivities: [],
-    })
+    body: JSON.stringify(bookingObject)
   })
   .then(response => response.json())
   .catch(err => console.error(err));
@@ -42,5 +33,6 @@ const submitTripRequest = (booking, userID) => {
 
 
 module.exports = {
-  fetchAPIcall
+  fetchAPIcall,
+  submitTripRequest
 };

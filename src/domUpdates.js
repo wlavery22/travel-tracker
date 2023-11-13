@@ -10,7 +10,6 @@ const displayDestinationDropDown = (destinations) => {
   destinations.forEach((spot) => {
     tripDestination.innerHTML += `<option value="${spot.id}">${spot.destination}</option>`
   })
-
 }
 
 const setErrorMessage = (message) => {
@@ -19,6 +18,7 @@ const setErrorMessage = (message) => {
 
 const displayUserTrips = (trips) => {
   console.log(trips)
+  tripsElement.innerHTML = ""
   trips.forEach((trip, index) => {
     tripsElement.innerHTML += `
     <article>

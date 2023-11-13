@@ -6,7 +6,7 @@ import './css/styles.css';
 import './images/turing-logo.png'
 console.log('This is the JavaScript entry file - your code begins here.');
 
-import { fetchAPIcall } from "./apiCalls";
+import { fetchAPIcall, submitTripRequest } from "./apiCalls";
 
 import { displayUserTrips, setErrorMessage, displayTotalSpentThisYr, displayDestinationDropDown, updateEstimatedCost } from "./domUpdates"; 
 import { filterTripsByUser, getTotalSpentThisYr, getEstimatedCost } from "./utils";
@@ -14,9 +14,11 @@ import { filterTripsByUser, getTotalSpentThisYr, getEstimatedCost } from "./util
 const loginButton = document.getElementById("loginSubmitButton");
 const tripDestination = document.getElementById("tripDestination");
 const estimateCostButton = document.getElementById("estimateCostButton");
+const bookingFormSubmitButton = document.getElementById("bookingFormSubmitButton");
 
 let userTrips 
 let destinations
+let globalUserId
 
 // const login = (event) => {
 //   event.preventDefault();
@@ -50,6 +52,7 @@ const bypassLoginScreen = () => {
 
 const setupDashboard = (userId) => {
   // console.log(userId);
+    globalUserId = parseInt(userId)
     Promise.all([
       fetchAPIcall("trips"),
       fetchAPIcall("destinations")
@@ -61,6 +64,7 @@ const setupDashboard = (userId) => {
       // console.log("RESPONSE!:", response)
       destinations = response[1].destinations
       const usersTrips = filterTripsByUser(response[0].trips, parseInt(userId))
+      userTrips = usersTrips
       displayUserTrips(usersTrips)
       const totalSpentThisYr = getTotalSpentThisYr(usersTrips, response[1].destinations)
       displayTotalSpentThisYr(totalSpentThisYr)
@@ -105,8 +109,37 @@ const estimateCost = (event) => {
   updateEstimatedCost(estimatedCost)
 }
 
+const submitBooking = (event) => {
+  event.preventDefault();
+  const tripDestination = document.getElementById("tripDestination");
+  const tripDate = document.getElementById("tripDate");
+  const tripDuration = document.getElementById("tripDuration");
+  const partySize = document.getElementById("partySize");
+  const reformattedDate = tripDate.value.split("-").join("/");
+  // console.log(userId)
+  const bookingObject = {
+    id: Date.now(),
+    userID: globalUserId,
+    destinationID: parseInt(tripDestination.value),
+    travelers: parseInt(partySize.value),
+    date: reformattedDate,
+    duration: parseInt(tripDuration.value),
+    status: "pending", 
+    suggestedActivities: []
+  }
+  submitTripRequest(bookingObject)
+    .then((response) => {
+      console.log(response, userTrips)
+      userTrips.push(response.newTrip)
+      displayUserTrips(userTrips)
+    })
+}
+
+// {id: <number>, userID: <number>, destinationID: <number>, travelers: <number>, date: <string 'YYYY/MM/DD'>, duration: <number>, status: <string 'approved' or 'pending'>, suggestedActivities: <array of strings>}
+
 loginButton.addEventListener("click", login);
 estimateCostButton.addEventListener("click", estimateCost);
+bookingFormSubmitButton.addEventListener("click", submitBooking);
 
 window.addEventListener("load", function () {
   console.log("TEST")
