@@ -125,9 +125,10 @@ const submitBooking = (event) => {
   submitTripRequest(bookingObject)
     .then((response) => {
       console.log(response, userTrips)
-      userTrips.push(response.newTrip)
+      // userTrips.push(response.newTrip)
       // fetch(get) updates the DOM, not the form input, function below needs to use the fetch, not the form input
-      displayUserTrips(userTrips)
+      // displayUserTrips(userTrips)
+      setupDashboard(`${globalUserId}`)
     })
 }
 

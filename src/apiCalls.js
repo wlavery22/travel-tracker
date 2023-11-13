@@ -14,10 +14,6 @@ const fetchAPIcall = (data) => {
     });
 };
 
-// user can choose date, duration(# days), # travelers, destination
-// DOM display: after choosing, user should see estimated cost (with 10% travel agent fee)
-// DOM display: after submitting (Posting), user should see “pending”
-
 const submitTripRequest = (bookingObject) => {
   return fetch("http://localhost:3001/api/v1/trips", {
     method: 'POST',
@@ -29,8 +25,6 @@ const submitTripRequest = (bookingObject) => {
   .then(response => response.json())
   .catch(err => console.error(err));
 }
-// need to build into this function the ability to update DOM and call the functions that will estimate cost
-
 
 module.exports = {
   fetchAPIcall,
