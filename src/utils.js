@@ -24,7 +24,7 @@ const getTotalSpentThisYr = (trips, destinations) => {
     return acc += spentOnLodging + spentOnFlights
   }, 0)
   console.log(spentThisYear)
-  return spentThisYear * 1.1
+  return (spentThisYear * 1.1).toFixed(2)
 }
 
 const findDestinationById = (destinations, destinationId) => {

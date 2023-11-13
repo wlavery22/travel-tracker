@@ -20,35 +20,35 @@ let userTrips
 let destinations
 let globalUserId
 
-// const login = (event) => {
-//   event.preventDefault();
-//   const username = document.getElementById("username");
-//   const password = document.getElementById("password");
-//   const loginError = document.getElementById("loginError");
-//   if (username.value === "traveler50" && password.value === "travel") {
-//     const userId = username.value.slice(-2)
-//     loginError.innerHTML = ""
-//     username.value = ""
-//     password.value = ""
-//     const login = document.getElementById("login");
-//     login.classList.add("hidden")
-//     const dashboard = document.getElementById("dashboard");
-//     dashboard.classList.remove("hidden")
-//     setupDashboard(userId)
-//   } else {
-//     loginError.innerHTML = `<p>Incorrect Username & Password, Please Try Again</p>`
-//     username.value = ""
-//     password.value = ""
-//   } 
-// }
-
-const bypassLoginScreen = () => {
-  const login = document.getElementById("login");
-  login.classList.add("hidden")
-  const dashboard = document.getElementById("dashboard");
-  dashboard.classList.remove("hidden")
-  setupDashboard("50")
+const login = (event) => {
+  event.preventDefault();
+  const username = document.getElementById("username");
+  const password = document.getElementById("password");
+  const loginError = document.getElementById("loginError");
+  if (username.value === "traveler50" && password.value === "travel") {
+    const userId = username.value.slice(-2)
+    loginError.innerHTML = ""
+    username.value = ""
+    password.value = ""
+    const login = document.getElementById("login");
+    login.classList.add("hidden")
+    const dashboard = document.getElementById("dashboard");
+    dashboard.classList.remove("hidden")
+    setupDashboard(userId)
+  } else {
+    loginError.innerHTML = `<p>Incorrect Username & Password, Please Try Again</p>`
+    username.value = ""
+    password.value = ""
+  } 
 }
+
+// const bypassLoginScreen = () => {
+//   const login = document.getElementById("login");
+//   login.classList.add("hidden")
+//   const dashboard = document.getElementById("dashboard");
+//   dashboard.classList.remove("hidden")
+//   setupDashboard("50")
+// }
 
 const setupDashboard = (userId) => {
   // console.log(userId);
@@ -136,7 +136,7 @@ loginButton.addEventListener("click", login);
 estimateCostButton.addEventListener("click", estimateCost);
 bookingFormSubmitButton.addEventListener("click", submitBooking);
 
-window.addEventListener("load", function () {
-  console.log("TEST")
-  bypassLoginScreen()
-});
+// window.addEventListener("load", function () {
+//   console.log("TEST")
+//   bypassLoginScreen()
+// });
