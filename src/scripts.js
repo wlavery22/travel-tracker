@@ -20,35 +20,35 @@ let userTrips
 let destinations
 let globalUserId
 
-const login = (event) => {
-  event.preventDefault();
-  const username = document.getElementById("username");
-  const password = document.getElementById("password");
-  const loginError = document.getElementById("loginError");
-  if (username.value === "traveler50" && password.value === "travel") {
-    const userId = username.value.slice(-2)
-    loginError.innerHTML = ""
-    username.value = ""
-    password.value = ""
-    const login = document.getElementById("login");
-    login.classList.add("hidden")
-    const dashboard = document.getElementById("dashboard");
-    dashboard.classList.remove("hidden")
-    setupDashboard(userId)
-  } else {
-    loginError.innerHTML = `<p>Incorrect Username & Password, Please Try Again</p>`
-    username.value = ""
-    password.value = ""
-  } 
-}
-
-// const bypassLoginScreen = () => {
-//   const login = document.getElementById("login");
-//   login.classList.add("hidden")
-//   const dashboard = document.getElementById("dashboard");
-//   dashboard.classList.remove("hidden")
-//   setupDashboard("50")
+// const login = (event) => {
+//   event.preventDefault();
+//   const username = document.getElementById("username");
+//   const password = document.getElementById("password");
+//   const loginError = document.getElementById("loginError");
+//   if (username.value === "traveler50" && password.value === "travel") {
+//     const userId = username.value.slice(-2)
+//     loginError.innerHTML = ""
+//     username.value = ""
+//     password.value = ""
+//     const login = document.getElementById("login");
+//     login.classList.add("hidden")
+//     const dashboard = document.getElementById("dashboard");
+//     dashboard.classList.remove("hidden")
+//     setupDashboard(userId)
+//   } else {
+//     loginError.innerHTML = `<p>Incorrect Username & Password, Please Try Again</p>`
+//     username.value = ""
+//     password.value = ""
+//   } 
 // }
+
+const bypassLoginScreen = () => {
+  const login = document.getElementById("login");
+  login.classList.add("hidden")
+  const dashboard = document.getElementById("dashboard");
+  dashboard.classList.remove("hidden")
+  setupDashboard("50")
+}
 
 const setupDashboard = (userId) => {
   // console.log(userId);
@@ -60,15 +60,15 @@ const setupDashboard = (userId) => {
     .then((response) => {
       // getAllTripsByUser(50),
       userTrips = response
-      console.log(userTrips)
-      console.log("RESPONSE!:", response)
+      // console.log(userTrips)
+      // console.log("RESPONSE!:", response)
       destinations = response[1].destinations
       const usersTrips = filterTripsByUser(response[0].trips, parseInt(userId))
       userTrips = usersTrips
       displayUserTrips(usersTrips)
       const totalSpentThisYr = getTotalSpentThisYr(usersTrips, response[1].destinations)
       displayTotalSpentThisYr(totalSpentThisYr)
-      console.log("RESPONSE!:", response)
+      // console.log("RESPONSE!:", response)
       displayDestinationDropDown(response[1].destinations)
       // updateDOM()
       // getUserTotalCost() 
@@ -100,7 +100,7 @@ const estimateCost = (event) => {
     travelers: partySize.value
   }
   const estimatedCost = getEstimatedCost(bookingObject, destinations)
-  console.log(estimatedCost)
+  // console.log(estimatedCost)
   updateEstimatedCost(estimatedCost)
 }
 
@@ -124,7 +124,7 @@ const submitBooking = (event) => {
   }
   submitTripRequest(bookingObject)
     .then((response) => {
-      console.log(response, userTrips)
+      // console.log(response, userTrips)
       // userTrips.push(response.newTrip)
       // fetch(get) updates the DOM, not the form input, function below needs to use the fetch, not the form input
       // displayUserTrips(userTrips)
@@ -136,7 +136,7 @@ loginButton.addEventListener("click", login);
 estimateCostButton.addEventListener("click", estimateCost);
 bookingFormSubmitButton.addEventListener("click", submitBooking);
 
-// window.addEventListener("load", function () {
-//   console.log("TEST")
-//   bypassLoginScreen()
-// });
+window.addEventListener("load", function () {
+  // console.log("TEST")
+  bypassLoginScreen()
+});
