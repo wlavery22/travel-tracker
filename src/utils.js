@@ -41,7 +41,7 @@ const getEstimatedCost = (bookingObject, destinations) => {
     const estimatedFlightCost = bookingObject.travelers * matchingDestination.estimatedFlightCostPerPerson
     const estimatedLodgingCost = bookingObject.duration * matchingDestination.estimatedLodgingCostPerDay
     const totalEstimatedCost = estimatedFlightCost + estimatedLodgingCost
-    return totalEstimatedCost * 1.1
+    return (totalEstimatedCost * 1.1).toFixed(2)
   }
 }
 

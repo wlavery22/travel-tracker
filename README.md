@@ -1,101 +1,76 @@
-# Webpack Starter Kit
+## Abstract
 
-## Clone This Repo
+This is a user-friendly travel app inspired by travel booking websites like Expedia or Priceline as outlined in [this project spec](https://frontend.turing.edu/projects/travel-tracker.html). Using remote data sets of trips, destinations and travelers, we managed to integrate information about users' travels and their expenditures into a dashboard to display for any user. The purpose of Travel Tracker was to take user datasets and display them for individual users in an easy to understand visual representation. The dashboard allows a user to view and see information about their trips including date, duration, # of travelers, total expenditures and whether or not a trip's booking status is "pending".
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
+## Learning Goals
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+- Use object and array prototype methods to perform data manipulation
+- Create a clear and accessible user interface
+- Make network requests to retrieve data
+- Implement a robust testing suite using TDD
+- Write DRY, reusable code that follows SRP (Single Responsibility    Principle)
 
-Now try to commit something (just add a line in the README) and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
+## Preview of App
+### Part One
+<img src="https://i.imgur.com/uN96sFM.png" width="1012" height="531" alt="Screenshot of Fit Lit App">
 
-## Setup
+### Part Two 
+![Screenshot of Part Two](src/images/fit_lit.gif)
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
+## Context
+### Tools
+Javascript, HTML, CSS, NPM, Node.JS, GitHub, GitHub Projects, JSON, Webpack, Mocha, Chai, DayJS, WAVE
+# Timeline
+This is a mod 2 student project done in two parts in a two week sprint by four people. 
+# Collaborators
+- [Gavin Garcia](https://github.com/EGavinG)
+- [Deanna Stevens](https://github.com/dsstevens)
+- [Dan Waverly](https://github.com/wlavery22)
+- [Bobby Steckline](https://github.com/rjsturing)
 
-Then install the library dependencies. Run:
+## Installation
+- Click the green `code` button.
+- Copy the SSH link to your clipboard.
+- Open the terminal on your local machine.
+- Change into the directory that you wish to clone the app into with the cd command.
+- Install the npm dependency by typing `npm install` on the command line in terminal.
+- Start the webpack by typing `npm start` into the terminal.
+- Copy the link it provides that will look like this: [http:localhost:8080]() 
+- Paste that code into your web browser.
+- On a separate tab, navigate to [this page](https://github.com/turingschool-examples/fitlit-api) which has the server that will be necessary to run on your local machine. 
+- Follow the first steps of copying and cloning that SSH code into your terminal.
+- Run `npm install` and `npm start`.
+- You should see that the local server is now running and which provides the data to populate on the 8080 site.
+- Enjoy using an activity tracking application!
 
-```bash
-npm install
-```
+### Wins
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
+- Learning how to implement fetch requests and no longer using local data files which involved creating a function that stored the data. 
+- Posting new data for hydration.
+- Created and implemented a stopwatch timer with asynchronous Javascript.
+- Writing and implementing our first usability test, gathering information and using feedback.
+- Learning about Promises and promiseAll().
+- Learning about Webpack and how to utilize imports and exports.
+- Overcoming the challenges we faced using GitHib involved establishing new norms for more frequent communication and careful coordination of pushing and merging branches.
+- Keeping accessibility in mind during the app rendering phase on the DOM.
+- Utilizing GitHub projects and creating a board with issue tickets linked to pull requests.
+- Reaching out to mentors and having frequent checkins while learning new tools.
 
-## Where to Add Your Code
+### Challenges
+- TDD
+- Accurately POSTing new information with adequate error handling to guide the UX.
+- Developing a concept for a login which was a huge undertaking with refactoring our functionality.
+- Naming conventions and effectively tracking variables and functions across multiple files.
+- Understanding code written by others.
+- Utilizing iterator methods in our ES6 JS functions.
+- Moving from using local data files to using fetch calls to retrieve data.
+- PromiseAll() and missing a return that made us question our understanding of a new method.
+- Using Webpack to manage file structure and import / export statements between files.
+- Learning to coordinate collaboration using GitHub between four team members working simultaneously on multiple branches.
 
-### JavaScript
-
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
-
-**Create all of your feature code files in the `src` directory.**
-
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
-
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
-
-### HTML
-
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
-
-### Images
-
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
-
-## How to View Your Code in Action
-
-In the terminal, run:
-
-```bash
-npm start
-```
-
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
-
-```bash
-Project is running at http://localhost:8080/
-```
-
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
-
----
-
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
+## Future features could include:
+- Building user interactivity allowing them to not only add new input for one activity but also manipulate data.
+- Complete the login and develop a login view which persists for the user upon refresh.
+- Giving the user more information on login such as a motivational quote or a competitive incentive with other app users.
 
 
