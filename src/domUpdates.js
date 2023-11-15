@@ -1,4 +1,3 @@
-// import 
 
 const tripsElement = document.getElementById("trips");
 const errorMessage = document.getElementById("errorMessage");
