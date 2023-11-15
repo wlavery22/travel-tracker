@@ -34,12 +34,12 @@ describe('trip-related functions', function() {
       const spentOnFlights = curr.travelers * matchingDestination.estimatedFlightCostPerPerson;
       return acc += spentOnLodging + spentOnFlights;
     }, 0);
-    const expectedTotal = spentThisYear * 1.1;
+    const expectedTotal = (spentThisYear * 1.1).toFixed(2);
     const result = getTotalSpentThisYr(trips, destinations);
     expect(result).to.equal(expectedTotal);
   });
 
-  it('should return 0 when no money was spent in the current year', function() {
+  it('should return 0.00 when no money was spent in the current year', function() {
     const currentYear = new Date().getFullYear();
     const noSpentTripsData = {...trips};
     noSpentTripsData.trips = trips.map(trip => {
@@ -49,7 +49,7 @@ describe('trip-related functions', function() {
       return trip;
     });
     const result = getTotalSpentThisYr(noSpentTripsData.trips, destinations);
-    expect(result).to.equal(0);
+    expect(result).to.equal('0.00');
   });
 
   it('should return the correct destination for a given id', function() {
@@ -74,7 +74,7 @@ describe('trip-related functions', function() {
     const matchingDestination = findDestinationById(destinations, bookingObject.id);
     const estimatedFlightCost = bookingObject.travelers * matchingDestination.estimatedFlightCostPerPerson;
     const estimatedLodgingCost = bookingObject.duration * matchingDestination.estimatedLodgingCostPerDay;
-    const expectedTotal = (estimatedFlightCost + estimatedLodgingCost) * 1.1;
+    const expectedTotal = ((estimatedFlightCost + estimatedLodgingCost) * 1.1).toFixed(2);
     const result = getEstimatedCost(bookingObject, destinations);
     expect(result).to.equal(expectedTotal);
   });

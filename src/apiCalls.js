@@ -30,3 +30,4 @@ module.exports = {
   fetchAPIcall,
   submitTripRequest
 };
+// you should add error handling to the fetch calls
