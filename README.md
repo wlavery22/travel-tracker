@@ -10,9 +10,10 @@ This is a user-friendly travel app inspired by travel booking websites like Expe
 
 ## Preview of App
 src/images/Screenshot 2023-11-14 at 7.15.46 PM.png
-src/images/Screenshot 2023-11-14 at 7.16.39 PM.png
-<!-- ![Screenshot of Part Two](src/images/fit_lit.gif) -->
-<!-- <img src="https://i.imgur.com/uN96sFM.png" width="1012" height="531" alt="Screenshot of Fit Lit App"> -->
+src/images/Screensho<img width="699" alt="Screenshot 2023-11-14 at 7 15 46 PM" src="https://github.com/wlavery22/travel-tracker/assets/119368820/381bca88-5e10-4714-ac14-d442e99f3388">
+t 2023-11-14 at 7.16.39 PM.png
+<img width="666" alt="Screenshot 2023-11-14 at 7 16 39 PM" src="https://github.com/wlavery22/travel-tracker/assets/119368820/d56b4fef-9a32-4e78-9920-4e84316b84cb">
+
 
 ## Context
 
